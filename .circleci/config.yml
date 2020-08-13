@@ -33,12 +33,12 @@ jobs:
           fingerprints:
             - "73:c6:8d:5d:5b:fa:25:75:a2:e0:6f:23:37:16:41:c6"
       - attach_workspace:
-          at: target
+          at: target/demo-0.0.1-SNAPSHOT.jar
       - run:
           name: Show artifacts
           command: |
             pwd;
-            ls -al target;
+            ls -al;
 
 workflows:
   version: 2
