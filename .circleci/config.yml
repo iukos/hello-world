@@ -35,10 +35,10 @@ jobs:
       - attach_workspace:
           at: target
       - run:
-          name: Show artifacts
+          name: Upload artifacts to server
           command: |
-            ls -al target;
-            scp target/demo-0.0.1-SNAPSHOT.jar root@47.101.145.120:~
+            ssh root@47.101.145.120 'ls -al'
+            # scp target/demo-0.0.1-SNAPSHOT.jar root@47.101.145.120:~
 
 workflows:
   version: 2
