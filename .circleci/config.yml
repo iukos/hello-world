@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/demo-app
+    working_directory: /demo-app
     docker:
       - image: circleci/openjdk:8-jdk-stretch
     steps:
@@ -23,7 +23,7 @@ jobs:
   deploy:
     machine:
       enabled: true
-    working_directory: ~/demo-app
+    working_directory: /demo-app
     steps:
       - run:
           name: Fix ssh Could not resolve hostname
