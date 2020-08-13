@@ -19,7 +19,7 @@ jobs:
       - run:
           name: Show output folder
           command: |
-            ls -al
+            ls -al /
   deploy:
     machine:
       enabled: true
