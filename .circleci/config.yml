@@ -19,7 +19,7 @@ jobs:
       - run:
           name: Show output folder
           command: |
-            wpd
+            pwd
   deploy:
     machine:
       enabled: true
