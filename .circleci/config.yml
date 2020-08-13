@@ -38,7 +38,7 @@ jobs:
           name: Show artifacts
           command: |
             pwd;
-            ls -al;
+            ls -al target;
 
 workflows:
   version: 2
