@@ -16,6 +16,10 @@ jobs:
       - run: mvn package
       - store_artifacts:
           path: target/demo-app-0.0.1-SNAPSHOT.jar
+      - run:
+          name: Show output folder
+          command: |
+            ls -al
   deploy:
     machine:
       enabled: true
@@ -34,9 +38,3 @@ workflows:
   build-deploy:
     jobs:
       - build
-      - deploy:
-          requires:
-            - build # Only run deploy job once the build job has completed
-          filters:
-            branches:
-              only: master # Only deploy when the commit is on the Master branch
