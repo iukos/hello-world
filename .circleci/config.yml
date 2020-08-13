@@ -32,6 +32,8 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "73:c6:8d:5d:5b:fa:25:75:a2:e0:6f:23:37:16:41:c6"
+      - attach_workspace:
+          at: target
       - run:
           name: Show artifacts
           command: |
