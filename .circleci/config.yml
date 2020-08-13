@@ -1,9 +1,42 @@
-version: 2.1
-
-orbs:
-  maven: circleci/maven@0.0.12
+version: 2
+jobs:
+  build:
+    working_directory: ~/demo-app
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch
+    steps:
+      - checkout
+      - restore_cache:
+          key: demo-app-{{ checksum "pom.xml" }}
+      - run: mvn dependency:go-offline
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: demo-app-{{ checksum "pom.xml" }}
+      - run: mvn package
+      - store_artifacts:
+          path: target/demo-app-0.0.1-SNAPSHOT.jar
+  deploy:
+    machine:
+      enabled: true
+    working_directory: ~/demo-app
+    steps:
+      - run:
+          name: Fix ssh Could not resolve hostname
+          command: |
+            ssh-keyscan 47.101.145.120 >> ~/.ssh/known_hosts
+      - add_ssh_keys:
+          fingerprints:
+            - "73:c6:8d:5d:5b:fa:25:75:a2:e0:6f:23:37:16:41:c6"
 
 workflows:
-  maven_test:
+  version: 2
+  build-deploy:
     jobs:
-      - maven/test # checkout, build, test, and upload test results
+      - build
+      - deploy:
+          requires:
+            - build # Only run deploy job once the build job has completed
+          filters:
+            branches:
+              only: master # Only deploy when the commit is on the Master branch
