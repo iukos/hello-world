@@ -16,11 +16,10 @@ jobs:
       - run: mvn package
       - store_artifacts:
           path: target/demo-0.0.1-SNAPSHOT.jar #需要上传的文件路径
-      - run:
-          name: Show output folder
-          command: |
-            pwd;
-            ls -al;
+      - persist_to_workspace:
+          root: target
+          paths:
+            - demo-0.0.1-SNAPSHOT.jar
   deploy:
     machine:
       enabled: true
@@ -38,7 +37,6 @@ jobs:
           command: |
             pwd;
             ls -al;
-            ls -al target;
 
 workflows:
   version: 2
