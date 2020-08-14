@@ -24,7 +24,7 @@ jobs:
             cp .circleci/deploy.sh build
       - persist_to_workspace:
           root: .
-          paths:
+           paths:
             - build
   deploy:
     machine:
@@ -44,7 +44,7 @@ jobs:
           name: Upload artifacts to server
           command: |
             ls -al
-            ls -al build
+            ls -al build/build
             # ls -al .circleci
             # scp .circleci/deploy.sh root@47.101.145.120:~
             # scp target/demo-0.0.1-SNAPSHOT.jar root@47.101.145.120:~
