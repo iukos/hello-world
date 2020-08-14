@@ -44,7 +44,10 @@ jobs:
           name: Upload artifacts to server
           command: |
             scp -r build root@47.101.145.120:~
-            ssh root@47.101.145.120 'chmod 777 build/deploy.sh;ls -al;./deploy.sh;rm -rf build'
+      - run:
+          name: Deploy the APP
+          command: |
+            ssh root@47.101.145.120 'chmod 777 build/deploy.sh;ls -al;./deploy.sh;rm -rf build;'
 
 workflows:
   version: 2
