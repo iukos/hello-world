@@ -43,10 +43,8 @@ jobs:
       - run:
           name: Upload artifacts to server
           command: |
-            ls -al
-            ls -al build
             # ls -al .circleci
-            # scp .circleci/deploy.sh root@47.101.145.120:~
+            scp -r build root@47.101.145.120:~
             # scp target/demo-0.0.1-SNAPSHOT.jar root@47.101.145.120:~
             # ssh root@47.101.145.120 'chmod 777 deploy.sh;ls -al;./deploy.sh;rm deploy.sh'
 
