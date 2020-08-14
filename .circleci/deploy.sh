@@ -9,12 +9,14 @@ if [[ "" !=  "$PID" ]]; then
 fi
 
 # 删除现有的jar文件
+rm /var/iukos/demo-0.0.1-SNAPSHOT.jar
 
 # 复制新的jar文件
+cp demo-0.0.1-SNAPSHOT.jar /var/iukos
 
 # 启动服务
 PID=`ps -eaf | grep demo | grep -v grep | awk '{print $2}'`
 if [[ "" ==  "$PID" ]]; then
   echo "starting demo"
-  java -jar demo-0.0.1-SNAPSHOT.jar &
+  java -jar /var/iukos/demo-0.0.1-SNAPSHOT.jar &
 fi
