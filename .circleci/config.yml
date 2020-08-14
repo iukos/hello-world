@@ -24,8 +24,8 @@ jobs:
             cp .circleci/deploy.sh build
       - persist_to_workspace:
           root: .
-           paths:
-             - build
+          paths:
+            - build
   deploy:
     machine:
       enabled: true
